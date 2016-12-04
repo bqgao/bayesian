@@ -1,0 +1,13 @@
+# Bayesian Methods for the Physical Science. Learning from
+# Examples in Astronomy and Physics. By S. Andreon and B. Weaver. 
+model {
+for (i in 1:length(nrec)) {
+ nrec[i] ~ dbin(eff[i],ninj[i])
+ nrec.rep[i] ~ dbin(eff[i],ninj[i])
+ eff[i] <- A + (B-A)*phi((E[i]-mu)/sigma)
+}
+A~dunif(0,1)
+B~dunif(0,1)
+mu~dunif(0,100)
+sigma~dunif(0,100)
+}
